@@ -40,4 +40,22 @@ public class MyTool {
     public String getReservationName() {
         return reservationName;
     }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+    
+    
 }
