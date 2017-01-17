@@ -1,6 +1,6 @@
 package com.railtransme;
 
-import com.railtransme.textToolControllers.MainController;
+import com.railtransme.ui.MainController;
 import java.io.IOException;
 import java.io.InputStream;
 import javafx.fxml.FXMLLoader;
