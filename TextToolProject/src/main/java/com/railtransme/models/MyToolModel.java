@@ -6,6 +6,8 @@
 package com.railtransme.models;
 
 import com.railtransme.entities.MyTool;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -17,10 +19,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyToolModel {
 
-        @Getter @Setter
+        @Getter 
         private MyTool myTool;
-       
+       @Getter
+        private StringProperty tagProperty = new SimpleStringProperty();
+       @Getter
+        private StringProperty textProperty = new SimpleStringProperty();
 
+    public void setMyTool(MyTool myTool) {
+        this.myTool = myTool;
+        tagProperty.setValue(this.myTool.getTag());
+        textProperty.setValue(this.myTool.getItem());
+    }
+
+        
 
 }
 

@@ -22,7 +22,7 @@ public interface MyToolRepository extends CrudRepository<MyTool, Long> {
     List<MyTool> findAll();
     List<MyTool> findAllByOrderByTagAsc();
     
-    List<MyTool> findByTagLike(String name);
+    List<MyTool> findByTagLikeIgnoreCase(String name);
   
     
 }

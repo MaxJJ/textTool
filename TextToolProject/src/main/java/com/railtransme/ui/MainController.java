@@ -67,7 +67,7 @@ private ActionsService act;
         set.deleteButton();
         set.cancelButton();
         set.saveButton();
-        
+//        act.setDisableSCD();
         
     }
 

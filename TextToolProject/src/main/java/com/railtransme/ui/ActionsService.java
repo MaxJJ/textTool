@@ -8,11 +8,17 @@ package com.railtransme.ui;
 import com.railtransme.entities.MyTool;
 import com.railtransme.models.MyToolModel;
 import com.railtransme.repositories.MyToolRepository;
+import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.cell.TextFieldListCell;
+import javafx.util.Callback;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,25 +38,40 @@ private SettingService set;
 @Autowired
 private MyToolModel model;
 
-   public ChangeListener searchTextFieldChangeListener() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void clearAndFill() {
+        model.getTagProperty().set("");
+        model.getTextProperty().set("");
+        controller.getSearchTextField().requestFocus();
+      controller.getListView().getItems().clear();
+        controller.getListView().getItems().addAll(repo.findAll());
+    }
+@PostConstruct
+    void setDisableSCD() {
+       
+        controller.getNewButton().disableProperty().setValue(Boolean.FALSE);
+        controller.getSaveButton().disableProperty().setValue(Boolean.TRUE);
+        controller.getCancelButton().disableProperty().setValue(Boolean.TRUE);
+        controller.getDeleteButton().disableProperty().setValue(Boolean.TRUE);
+        
+    }
+    void setDisableN() {
+       
+        controller.getNewButton().setDisable(true);
+        controller.getSaveButton().setDisable(false);
+        controller.getCancelButton().setDisable(false);
+        controller.getDeleteButton().setDisable(false);
+        
+    }
+    void setDisableD() {
+       
+        controller.getNewButton().setDisable(false);
+        controller.getSaveButton().setDisable(false);
+        controller.getCancelButton().setDisable(false);
+        controller.getDeleteButton().setDisable(true);
+        
     }
 
-   public ChangeListener listViewChangeListener() {
-       return (ChangeListener) (ObservableValue observable, Object oldValue, Object newValue) -> {
-           controller.getListView().getItems().clear();
-           controller.getListView().setItems((ObservableList<MyTool>) newValue);
-       };
-         
-    }
 
-   public EventHandler<ActionEvent> saveButtonEventHandler() {
-       return (ActionEvent event) -> {
-           
-         repo.save(model.getMyTool());
-         controller.getListView().itemsProperty().getValue().add(model.getMyTool());
-       };
-    }
 
 
 }
