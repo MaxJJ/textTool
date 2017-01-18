@@ -5,19 +5,8 @@
  */
 package com.railtransme.ui;
 
-import com.railtransme.entities.MyTool;
 import com.railtransme.models.MyToolModel;
 import com.railtransme.repositories.MyToolRepository;
-import java.util.List;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.cell.TextFieldListCell;
-import javafx.util.Callback;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +34,12 @@ private MyToolModel model;
       controller.getListView().getItems().clear();
         controller.getListView().getItems().addAll(repo.findAll());
     }
+    
+    void clearEditor(){
+        model.getTagProperty().set("");
+        model.getTextProperty().set("");
+        
+    }
 @PostConstruct
     void setDisableSCD() {
        
@@ -69,6 +64,23 @@ private MyToolModel model;
         controller.getCancelButton().setDisable(false);
         controller.getDeleteButton().setDisable(true);
         
+    }
+    void setDisableND() {
+       
+        controller.getNewButton().setDisable(true);
+        controller.getSaveButton().setDisable(false);
+        controller.getCancelButton().setDisable(false);
+        controller.getDeleteButton().setDisable(true);
+        
+    }
+    
+    void disableListView(){
+        controller.getSearchTextField().setDisable(true);
+        controller.getListView().setDisable(true);
+    }
+    void enableListView(){
+        controller.getSearchTextField().setDisable(false);
+        controller.getListView().setDisable(false);
     }
 
 

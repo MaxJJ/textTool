@@ -9,7 +9,6 @@ import com.railtransme.entities.MyTool;
 import com.railtransme.models.MyToolModel;
 import com.railtransme.repositories.MyToolRepository;
 import java.util.List;
-import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -19,7 +18,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.KeyCode;
@@ -65,7 +63,8 @@ private ActionsService act;
         controller.getNewButton().setOnAction((eh)->{ 
             MyTool newItem = new MyTool();
             model.setMyTool(newItem);
-            act.setDisableN();
+            act.setDisableND();
+            act.disableListView();
         });
      
     }
@@ -82,12 +81,13 @@ private ActionsService act;
     void cancelButton() {
         Button cancelButton = controller.getCancelButton();
         TextField searchTf = controller.getSearchTextField();
-        model.getTagProperty().set("");
-        model.getTextProperty().set("");
+        
         cancelButton.setOnAction((eh)->{
             searchTf.requestFocus();
                 searchTf.textProperty().set("");
                 act.setDisableSCD();
+                act.enableListView();
+                act.clearEditor();
                 });
        
     }
@@ -96,6 +96,13 @@ private ActionsService act;
         
         controller.getSaveButton().setOnAction(saveButtonEventHandler());
         
+    }
+    void upperCaseButton() {
+        
+        controller.getUpperCaseButton().setOnAction((eh)->{ 
+         String text = model.getTextProperty().getValueSafe();
+        model.getTextProperty().setValue(text.toUpperCase());   
+        });
     }
 
     public ObservableList<MyTool> listItems(List<MyTool> list) {
@@ -147,6 +154,9 @@ private ActionsService act;
          }
         
          act.setDisableSCD();
+         act.clearEditor();
+         act.enableListView();
+         controller.getSearchTextField().requestFocus();
        };
     }
 
@@ -185,5 +195,6 @@ private ActionsService act;
          act.setDisableN();
     };
     }
+
     
 }

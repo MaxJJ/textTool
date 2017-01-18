@@ -49,6 +49,8 @@ private ActionsService act;
     private TextField tagTextField;
     @FXML @Getter
     private TextArea itemTextArea;
+    @FXML @Getter
+    private Button upperCaseButton;
     
      @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,7 +69,8 @@ private ActionsService act;
         set.deleteButton();
         set.cancelButton();
         set.saveButton();
-//        act.setDisableSCD();
+        set.upperCaseButton();
+
         
     }
 

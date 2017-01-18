@@ -8,10 +8,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.railtransme.ui.MainController">
+<AnchorPane id="AnchorPane" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.railtransme.ui.MainController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -29,21 +30,30 @@
                <children>
                   <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ToolBar prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
-                          <items>
-                              <Button fx:id="newButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="New" />
-                            <Button fx:id="saveButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Save" />
-                              <Button fx:id="cancelButton" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Cancel" />
-                              <Button fx:id="deleteButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Delete" textFill="#ff040c">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </Button>
-                          </items>
-                        </ToolBar>
+                        <HBox>
+                           <children>
+                              <ToolBar>
+                                <items>
+                                    <Button fx:id="newButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="New" />
+                                  <Button fx:id="saveButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Save" />
+                                    <Button fx:id="cancelButton" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Cancel" />
+                                    <Button fx:id="deleteButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Delete" textFill="#ff040c">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Button>
+                                </items>
+                              </ToolBar>
+                              <ToolBar nodeOrientation="RIGHT_TO_LEFT" HBox.hgrow="ALWAYS">
+                                <items>
+                                  <Button fx:id="upperCaseButton" mnemonicParsing="false" prefWidth="100.0" text="Upper" />
+                                </items>
+                              </ToolBar>
+                           </children>
+                        </HBox>
                         <TextField fx:id="tagTextField" promptText="TAGS" VBox.vgrow="NEVER" />
                         <TextArea fx:id="itemTextArea" layoutX="10.0" layoutY="70.0" promptText="TEXT" VBox.vgrow="ALWAYS" />
                      </children>
